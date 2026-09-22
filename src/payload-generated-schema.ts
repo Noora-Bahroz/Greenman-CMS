@@ -32,6 +32,10 @@ export const categories = sqliteTable(
     catalogPdf: integer("catalog_pdf_id").references(() => media.id, {
       onDelete: "set null",
     }),
+    catalogPdfUrl: text("catalog_pdf_url"),
+    jsonName: text("json_name"),
+    jsonBadge: text("json_badge"),
+    jsonPdf: text("json_pdf"),
     updatedAt: text("updated_at")
       .notNull()
       .default(sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`),
@@ -73,13 +77,29 @@ export const families_images = sqliteTable(
     _order: integer("_order").notNull(),
     _parentID: integer("_parent_id").notNull(),
     id: text("id").primaryKey(),
-    kind: text("kind"),
+    kind: text("kind", {
+      enum: [
+        "image",
+        "technicalDrawing",
+        "drawing",
+        "gallery",
+        "3d",
+        "main",
+        "cover",
+        "logo",
+        "other",
+      ],
+    }).default("image"),
+    media: integer("media_id").references(() => media.id, {
+      onDelete: "set null",
+    }),
     path: text("path"),
     code: text("code"),
   },
   (columns) => [
     index("families_images_order_idx").on(columns._order),
     index("families_images_parent_id_idx").on(columns._parentID),
+    index("families_images_media_idx").on(columns.media),
     foreignKey({
       columns: [columns["_parentID"]],
       foreignColumns: [families.id],
@@ -152,6 +172,13 @@ export const families = sqliteTable(
     categoryID: integer("category_i_d_id").references(() => categories.id, {
       onDelete: "set null",
     }),
+    file: text("file"),
+    contractKey: text("contract_key"),
+    fileBadge: text("file_badge"),
+    fileDescription: text("file_description"),
+    order: numeric("order", { mode: "number" }),
+    codePrefix: text("code_prefix"),
+    extra: text("extra", { mode: "json" }),
     catalogPdf: integer("catalog_pdf_id").references(() => media.id, {
       onDelete: "set null",
     }),
@@ -175,27 +202,6 @@ export const families = sqliteTable(
   ],
 );
 
-export const products_images = sqliteTable(
-  "products_images",
-  {
-    _order: integer("_order").notNull(),
-    _parentID: integer("_parent_id").notNull(),
-    id: text("id").primaryKey(),
-    kind: text("kind"),
-    path: text("path"),
-    code: text("code"),
-  },
-  (columns) => [
-    index("products_images_order_idx").on(columns._order),
-    index("products_images_parent_id_idx").on(columns._parentID),
-    foreignKey({
-      columns: [columns["_parentID"]],
-      foreignColumns: [products.id],
-      name: "products_images_parent_id_fk",
-    }).onDelete("cascade"),
-  ],
-);
-
 export const products_specifications = sqliteTable(
   "products_specifications",
   {
@@ -213,6 +219,43 @@ export const products_specifications = sqliteTable(
       columns: [columns["_parentID"]],
       foreignColumns: [products.id],
       name: "products_specifications_parent_id_fk",
+    }).onDelete("cascade"),
+  ],
+);
+
+export const products_images = sqliteTable(
+  "products_images",
+  {
+    _order: integer("_order").notNull(),
+    _parentID: integer("_parent_id").notNull(),
+    id: text("id").primaryKey(),
+    kind: text("kind", {
+      enum: [
+        "image",
+        "technicalDrawing",
+        "drawing",
+        "gallery",
+        "3d",
+        "main",
+        "cover",
+        "logo",
+        "other",
+      ],
+    }).default("image"),
+    media: integer("media_id").references(() => media.id, {
+      onDelete: "set null",
+    }),
+    path: text("path"),
+    code: text("code"),
+  },
+  (columns) => [
+    index("products_images_order_idx").on(columns._order),
+    index("products_images_parent_id_idx").on(columns._parentID),
+    index("products_images_media_idx").on(columns.media),
+    foreignKey({
+      columns: [columns["_parentID"]],
+      foreignColumns: [products.id],
+      name: "products_images_parent_id_fk",
     }).onDelete("cascade"),
   ],
 );
@@ -246,20 +289,25 @@ export const products = sqliteTable(
   {
     id: integer("id").primaryKey(),
     sku: text("sku").notNull(),
+    family: integer("family_id").references(() => families.id, {
+      onDelete: "set null",
+    }),
+    subtitle: text("subtitle"),
+    file: text("file"),
+    categoryId: text("category_id"),
+    order: numeric("order", { mode: "number" }),
+    page: numeric("page", { mode: "number" }),
+    specSet: integer("spec_set_id").references(() => reusable_blocks.id, {
+      onDelete: "set null",
+    }),
     productName: text("product_name"),
     productNameAlias: text("product_name_alias"),
     category: text("category"),
     categoryAlias: text("category_alias"),
-    family: integer("family_id")
-      .notNull()
-      .references(() => families.id, {
-        onDelete: "set null",
-      }),
     brand: text("brand"),
     productRange: text("product_range"),
-    pageNumber: numeric("page_number", { mode: "number" }),
-    description: text("description"),
     shortDescription: text("short_description"),
+    description: text("description"),
     categoryDefinition: text("category_definition"),
     image: integer("image_id").references(() => media.id, {
       onDelete: "set null",
@@ -269,10 +317,6 @@ export const products = sqliteTable(
     technicalTable: text("technical_table", { mode: "json" }),
     properties: text("properties", { mode: "json" }),
     loadCases: text("load_cases", { mode: "json" }),
-    page: numeric("page", { mode: "number" }),
-    specSet: integer("spec_set_id").references(() => reusable_blocks.id, {
-      onDelete: "set null",
-    }),
     updatedAt: text("updated_at")
       .notNull()
       .default(sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`),
@@ -283,8 +327,8 @@ export const products = sqliteTable(
   (columns) => [
     uniqueIndex("products_sku_idx").on(columns.sku),
     index("products_family_idx").on(columns.family),
-    index("products_image_idx").on(columns.image),
     index("products_spec_set_idx").on(columns.specSet),
+    index("products_image_idx").on(columns.image),
     index("products_updated_at_idx").on(columns.updatedAt),
     index("products_created_at_idx").on(columns.createdAt),
   ],
@@ -295,6 +339,7 @@ export const variants = sqliteTable(
   {
     id: integer("id").primaryKey(),
     sku: text("sku").notNull(),
+    file: text("file"),
     code: text("code"),
     product: integer("product_id")
       .notNull()
@@ -370,7 +415,19 @@ export const media = sqliteTable(
   {
     id: integer("id").primaryKey(),
     alt: text("alt"),
-    kind: text("kind"),
+    kind: text("kind", {
+      enum: [
+        "image",
+        "technicalDrawing",
+        "drawing",
+        "gallery",
+        "3d",
+        "main",
+        "cover",
+        "logo",
+        "other",
+      ],
+    }),
     croppedTo: text("cropped_to"),
     updatedAt: text("updated_at")
       .notNull()
@@ -532,72 +589,31 @@ export const blogs_tags = sqliteTable(
   ],
 );
 
-export const blogs_blocks_rich_text = sqliteTable(
-  "blogs_blocks_rich_text",
-  {
-    _order: integer("_order").notNull(),
-    _parentID: integer("_parent_id").notNull(),
-    _path: text("_path").notNull(),
-    id: text("id").primaryKey(),
-    body: text("body", { mode: "json" }),
-    blockName: text("block_name"),
-  },
-  (columns) => [
-    index("blogs_blocks_rich_text_order_idx").on(columns._order),
-    index("blogs_blocks_rich_text_parent_id_idx").on(columns._parentID),
-    index("blogs_blocks_rich_text_path_idx").on(columns._path),
-    foreignKey({
-      columns: [columns["_parentID"]],
-      foreignColumns: [blogs.id],
-      name: "blogs_blocks_rich_text_parent_id_fk",
-    }).onDelete("cascade"),
-  ],
-);
-
-export const blogs_blocks_spec_table = sqliteTable(
-  "blogs_blocks_spec_table",
-  {
-    _order: integer("_order").notNull(),
-    _parentID: integer("_parent_id").notNull(),
-    _path: text("_path").notNull(),
-    id: text("id").primaryKey(),
-    block: integer("block_id").references(() => reusable_blocks.id, {
-      onDelete: "set null",
-    }),
-    blockName: text("block_name"),
-  },
-  (columns) => [
-    index("blogs_blocks_spec_table_order_idx").on(columns._order),
-    index("blogs_blocks_spec_table_parent_id_idx").on(columns._parentID),
-    index("blogs_blocks_spec_table_path_idx").on(columns._path),
-    index("blogs_blocks_spec_table_block_idx").on(columns.block),
-    foreignKey({
-      columns: [columns["_parentID"]],
-      foreignColumns: [blogs.id],
-      name: "blogs_blocks_spec_table_parent_id_fk",
-    }).onDelete("cascade"),
-  ],
-);
-
 export const blogs = sqliteTable(
   "blogs",
   {
     id: integer("id").primaryKey(),
     title: text("title").notNull(),
+    excerpt: text("excerpt"),
+    body: text("body", { mode: "json" }),
+    status: text("status", { enum: ["published", "draft"] }).default(
+      "published",
+    ),
     slug: text("slug").notNull(),
+    category: text("category"),
     author: integer("author_id").references(() => users.id, {
       onDelete: "set null",
     }),
-    category: text("category"),
     publishedAt: text("published_at").default(
       sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`,
     ),
     readTime: text("read_time"),
-    excerpt: text("excerpt"),
+    image: text("image"),
     coverImage: integer("cover_image_id").references(() => media.id, {
       onDelete: "set null",
     }),
     featured: integer("featured", { mode: "boolean" }).default(false),
+    contentHtml: text("content_html"),
     updatedAt: text("updated_at")
       .notNull()
       .default(sql`(strftime('%Y-%m-%dT%H:%M:%fZ', 'now'))`),
@@ -956,6 +972,11 @@ export const relations_families_images = relations(
       references: [families.id],
       relationName: "images",
     }),
+    media: one(media, {
+      fields: [families_images.media],
+      references: [media.id],
+      relationName: "media",
+    }),
   }),
 );
 export const relations_families_tables_columns = relations(
@@ -1002,6 +1023,16 @@ export const relations_families = relations(families, ({ one, many }) => ({
     relationName: "tables",
   }),
 }));
+export const relations_products_specifications = relations(
+  products_specifications,
+  ({ one }) => ({
+    _parentID: one(products, {
+      fields: [products_specifications._parentID],
+      references: [products.id],
+      relationName: "specifications",
+    }),
+  }),
+);
 export const relations_products_images = relations(
   products_images,
   ({ one }) => ({
@@ -1010,15 +1041,10 @@ export const relations_products_images = relations(
       references: [products.id],
       relationName: "images",
     }),
-  }),
-);
-export const relations_products_specifications = relations(
-  products_specifications,
-  ({ one }) => ({
-    _parentID: one(products, {
-      fields: [products_specifications._parentID],
-      references: [products.id],
-      relationName: "specifications",
+    media: one(media, {
+      fields: [products_images.media],
+      references: [media.id],
+      relationName: "media",
     }),
   }),
 );
@@ -1038,6 +1064,14 @@ export const relations_products = relations(products, ({ one, many }) => ({
     references: [families.id],
     relationName: "family",
   }),
+  specSet: one(reusable_blocks, {
+    fields: [products.specSet],
+    references: [reusable_blocks.id],
+    relationName: "specSet",
+  }),
+  specifications: many(products_specifications, {
+    relationName: "specifications",
+  }),
   image: one(media, {
     fields: [products.image],
     references: [media.id],
@@ -1046,16 +1080,8 @@ export const relations_products = relations(products, ({ one, many }) => ({
   images: many(products_images, {
     relationName: "images",
   }),
-  specifications: many(products_specifications, {
-    relationName: "specifications",
-  }),
   variants: many(products_variants, {
     relationName: "variants",
-  }),
-  specSet: one(reusable_blocks, {
-    fields: [products.specSet],
-    references: [reusable_blocks.id],
-    relationName: "specSet",
   }),
 }));
 export const relations_variants = relations(variants, ({ one }) => ({
@@ -1142,31 +1168,6 @@ export const relations_blogs_tags = relations(blogs_tags, ({ one }) => ({
     relationName: "tags",
   }),
 }));
-export const relations_blogs_blocks_rich_text = relations(
-  blogs_blocks_rich_text,
-  ({ one }) => ({
-    _parentID: one(blogs, {
-      fields: [blogs_blocks_rich_text._parentID],
-      references: [blogs.id],
-      relationName: "_blocks_richText",
-    }),
-  }),
-);
-export const relations_blogs_blocks_spec_table = relations(
-  blogs_blocks_spec_table,
-  ({ one }) => ({
-    _parentID: one(blogs, {
-      fields: [blogs_blocks_spec_table._parentID],
-      references: [blogs.id],
-      relationName: "_blocks_specTable",
-    }),
-    block: one(reusable_blocks, {
-      fields: [blogs_blocks_spec_table.block],
-      references: [reusable_blocks.id],
-      relationName: "block",
-    }),
-  }),
-);
 export const relations_blogs = relations(blogs, ({ one, many }) => ({
   author: one(users, {
     fields: [blogs.author],
@@ -1180,12 +1181,6 @@ export const relations_blogs = relations(blogs, ({ one, many }) => ({
   }),
   tags: many(blogs_tags, {
     relationName: "tags",
-  }),
-  _blocks_richText: many(blogs_blocks_rich_text, {
-    relationName: "_blocks_richText",
-  }),
-  _blocks_specTable: many(blogs_blocks_spec_table, {
-    relationName: "_blocks_specTable",
   }),
 }));
 export const relations_audits = relations(audits, ({ one }) => ({
@@ -1325,8 +1320,8 @@ type DatabaseSchema = {
   families_tables_columns: typeof families_tables_columns;
   families_tables: typeof families_tables;
   families: typeof families;
-  products_images: typeof products_images;
   products_specifications: typeof products_specifications;
+  products_images: typeof products_images;
   products_variants: typeof products_variants;
   products: typeof products;
   variants: typeof variants;
@@ -1337,8 +1332,6 @@ type DatabaseSchema = {
   reusable_blocks_blocks_load_table: typeof reusable_blocks_blocks_load_table;
   reusable_blocks: typeof reusable_blocks;
   blogs_tags: typeof blogs_tags;
-  blogs_blocks_rich_text: typeof blogs_blocks_rich_text;
-  blogs_blocks_spec_table: typeof blogs_blocks_spec_table;
   blogs: typeof blogs;
   audits: typeof audits;
   roles: typeof roles;
@@ -1356,8 +1349,8 @@ type DatabaseSchema = {
   relations_families_tables_columns: typeof relations_families_tables_columns;
   relations_families_tables: typeof relations_families_tables;
   relations_families: typeof relations_families;
-  relations_products_images: typeof relations_products_images;
   relations_products_specifications: typeof relations_products_specifications;
+  relations_products_images: typeof relations_products_images;
   relations_products_variants: typeof relations_products_variants;
   relations_products: typeof relations_products;
   relations_variants: typeof relations_variants;
@@ -1368,8 +1361,6 @@ type DatabaseSchema = {
   relations_reusable_blocks_blocks_load_table: typeof relations_reusable_blocks_blocks_load_table;
   relations_reusable_blocks: typeof relations_reusable_blocks;
   relations_blogs_tags: typeof relations_blogs_tags;
-  relations_blogs_blocks_rich_text: typeof relations_blogs_blocks_rich_text;
-  relations_blogs_blocks_spec_table: typeof relations_blogs_blocks_spec_table;
   relations_blogs: typeof relations_blogs;
   relations_audits: typeof relations_audits;
   relations_roles: typeof relations_roles;

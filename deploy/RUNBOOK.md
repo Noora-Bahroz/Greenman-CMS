@@ -66,8 +66,11 @@ docker compose -f deploy/docker-compose.yml ps
 docker compose -f deploy/docker-compose.yml logs -f cms
 ```
 
-First boot: the entrypoint sees an empty DB and runs `payload db:push` to
-create the SQLite schema, then starts the server.
+First boot: with no DB at `/app/data/payload.db` the entrypoint applies the
+SQLite schema via `payload migrate`, then seeds the catalogue from the mounted
+`/app/frontend` (data import + blog articles). Set `SKIP_PROVISION=true` in
+`deploy/.env.production` to skip provisioning (e.g. to restore a DB from
+backup before first start).
 
 ## 4. Create the first admin (owner-only step)
 
@@ -124,7 +127,7 @@ docker compose -f deploy/docker-compose.yml start cms
 
 | Symptom | Fix |
 |---|---|
-| Container exits with `db:push` failure | DB dir unwritable - check `deploy/server-data/db` owner is uid 1000 (`chown -R 1000:1000 deploy/server-data frontend`) |
+| Container exits with `payload migrate` failure | DB dir unwritable - check `deploy/server-data/db` owner is uid 1000 (`chown -R 1000:1000 deploy/server-data frontend`) |
 | Caddy shows `certificate ... did not come from any CA` | Internal/acme stager only for `localhost`; use a real domain for production |
 | Admin page won't load (502) | CMS still starting - `docker compose logs -f cms`, wait for healthcheck |
 | Publish pushes but site unchanged | Confirm Vercel project is connected to that exact repo/branch |

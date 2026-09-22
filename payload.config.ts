@@ -34,6 +34,9 @@ export default buildConfig({
   editor: lexicalEditor(),
   db: sqliteAdapter({
     client: { url: process.env.DATABASE_URI || 'file:payload.db' },
+    // Explicit migrations dir so the container + CLI always resolve it relative to this file,
+    // independent of the working directory (Payload defaults to <cwd>/src/migrations otherwise).
+    migrations: { dir: path.resolve(dirname, 'src/migrations') },
   }),
   typescript: { outputFile: path.resolve(dirname, 'src/payload-types.ts') },
 // Payload expects the sharp function itself here (not `{ enabled: true }`),
