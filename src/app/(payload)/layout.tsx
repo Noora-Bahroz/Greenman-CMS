@@ -5,6 +5,8 @@ import React from 'react'
 import { importMap } from './admin/importMap.js'
 import type { ServerFunctionClient } from 'payload'
 
+import './custom.scss'
+
 const serverFunction: ServerFunctionClient = async function (args) {
   'use server'
   return handleServerFunctions({

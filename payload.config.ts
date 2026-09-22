@@ -26,6 +26,14 @@ export default buildConfig({
   admin: {
     user: 'users',
     importMap: { baseDir: path.resolve(dirname) },
+    meta: { title: 'Greenman CMS', titleSuffix: '- Greenman CMS' },
+    dateFormat: 'dd MMM yyyy, HH:mm',
+    components: {
+      graphics: {
+        Logo: { path: './src/components/AdminLogo.tsx', exportName: 'Logo' },
+        Icon: { path: './src/components/AdminLogo.tsx', exportName: 'Icon' },
+      },
+    },
   },
   collections: [
     Categories, Families, Products, Variants, Specifications,

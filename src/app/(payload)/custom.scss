@@ -1,1 +1,169 @@
-{ "apiVersion": 1, "drafts": 1, "components": { "admin": { "injectedComponents": [] } }, "collections": [], "id": 1, "name": "payload-dark", "singleValue": 0, "themes": [{ "theme": "all", "rules": [{ "properties": [], "token": "" }] }] }
+/*
+ * Greenman CMS admin theme.
+ * Global stylesheet for the Payload admin panel, loaded via src/app/(payload)/layout.tsx.
+ *
+ * Payload ships all of its styles inside `@layer payload-default`, so anything
+ * declared here (unlayered, or inside `@layer payload`) reliably overrides it:
+ *   - CSS custom properties (fonts, radii, accent ramp, surfaces) drive the whole UI.
+ *   - Component-level tweaks use Payload's BEM class names.
+ */
+:root,
+html[data-theme='light'] {
+  /* --- typography ----------------------------------------------------- */
+  --font-body:
+    'Inter', 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, 'Helvetica Neue', Arial,
+    sans-serif;
+  --font-serif: 'Georgia', 'Bitstream Charter', serif;
+  --font-mono: 'JetBrains Mono', 'SF Mono', Menlo, Consolas, Monaco, monospace;
+
+  /* --- radius ---------------------------------------------------------- */
+  --style-radius-s: 6px;
+  --style-radius-m: 8px;
+  --style-radius-l: 12px;
+
+  /* --- layout ---------------------------------------------------------- */
+  --nav-width: 264px;
+  --theme-text: var(--theme-elevation-900);
+
+  /* --- accent: Greenman "safety green" ramp ---------------------------- */
+  --color-success-50: #ecfdf5;
+  --color-success-100: #d1fae5;
+  --color-success-150: #c0f3dc;
+  --color-success-200: #a7f3d0;
+  --color-success-250: #8aebc0;
+  --color-success-300: #6ee7b7;
+  --color-success-350: #4fdd9f;
+  --color-success-400: #34d399;
+  --color-success-450: #1fca8a;
+  --color-success-500: #10b981;
+  --color-success-550: #0aa873;
+  --color-success-600: #059669;
+  --color-success-650: #04845b;
+  --color-success-700: #047857;
+  --color-success-750: #036a4b;
+  --color-success-800: #065f46;
+  --color-success-850: #06513c;
+  --color-success-900: #064e3b;
+  --color-success-950: #022c22;
+}
+
+/* Dark mode: deep "obsidian with a hint of green", rebuilt from the base ramp. */
+html[data-theme='dark'] {
+  --color-base-900: #0d100e;
+  --color-base-850: #131816;
+  --color-base-800: #1a201d;
+  --color-base-750: #222925;
+  --color-base-700: #2b332e;
+  --color-base-650: #353e38;
+  --color-base-600: #414a43;
+  --color-base-550: #4d574f;
+  --color-base-500: #5a655c;
+  --color-base-450: #6a756d;
+  --color-base-400: #7a867d;
+  --color-base-350: #8b978e;
+  --color-base-300: #9da9a0;
+  --color-base-250: #b0bab2;
+  --color-base-200: #c3ccc5;
+  --color-base-150: #d6ddd8;
+  --color-base-100: #e8ece9;
+  --color-base-50: #f4f6f5;
+  --color-base-0: #ffffff;
+  --theme-input-bg: #1a201d;
+}
+
+/* -------------------------------------------------------------------------
+ * Component-level polish
+ * ------------------------------------------------------------------------- */
+@layer payload {
+  /* body --------------------------------------------------------------- */
+  body {
+    letter-spacing: -0.011em;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+
+  ::selection {
+    background: var(--color-success-200);
+    color: var(--color-base-950);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--theme-success-500);
+    outline-offset: 2px;
+  }
+
+  /* scrollbars ---------------------------------------------------------- */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: var(--theme-elevation-400) transparent;
+  }
+
+  /* primary actions: green, softer shadows ------------------------------ */
+  .btn--style-primary {
+    --bg-color: var(--color-success-600);
+    --hover-bg: var(--color-success-500);
+    --color: #ffffff;
+    --hover-color: #ffffff;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.14);
+    font-weight: 600;
+  }
+
+  .btn--style-pill {
+    font-weight: 600;
+  }
+
+  /* sticky app header: translucent, blurred ---------------------------- */
+  .app-header {
+    background: color-mix(in srgb, var(--theme-elevation-0) 88%, transparent);
+    -webkit-backdrop-filter: saturate(1.4) blur(10px);
+    backdrop-filter: saturate(1.4) blur(10px);
+  }
+
+  /* cards & dashboard tiles -------------------------------------------- */
+  .card {
+    border: 1px solid var(--theme-elevation-150);
+    border-radius: var(--style-radius-l);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 4px 12px rgb(0 0 0 / 0.04);
+    transition: border-color 150ms ease, box-shadow 150ms ease;
+  }
+
+  .card:hover {
+    border-color: var(--theme-elevation-250);
+    box-shadow: 0 2px 4px rgb(0 0 0 / 0.05), 0 8px 20px rgb(0 0 0 / 0.06);
+  }
+
+  /* tables -------------------------------------------------------------- */
+  .table {
+    border-collapse: separate;
+    border-spacing: 0;
+  }
+
+  .table tbody tr {
+    transition: background-color 120ms ease;
+  }
+
+  .table tbody tr:hover {
+    background: var(--theme-elevation-50);
+  }
+
+  /* side navigation ----------------------------------------------------- */
+  .nav-group {
+    border-radius: var(--style-radius-m);
+  }
+
+  /* login --------------------------------------------------------------- */
+  .login {
+    /* keeps the default centered layout, gently branded */
+  }
+
+  .login .login__brand {
+    margin-bottom: calc(var(--base) * 1.5);
+  }
+
+  /* inputs -------------------------------------------------------------- */
+  input,
+  textarea,
+  select,
+  [data-scheme='light'] input {
+    transition: border-color 120ms ease, box-shadow 120ms ease;
+  }
+}
