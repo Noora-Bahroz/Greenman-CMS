@@ -7,7 +7,7 @@ import type { CollectionConfig } from 'payload'
 // `first-register` flow bypasses access control while zero users exist.
 const Users: CollectionConfig = {
   slug: 'users',
-  admin: { useAsTitle: 'email', defaultColumns: ['email', 'name', 'isAdmin'] },
+  admin: { group: 'System', useAsTitle: 'email', defaultColumns: ['email', 'name', 'isAdmin'] },
   auth: true,
   access: {
     read: ({ req, id }) => {

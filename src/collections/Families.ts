@@ -11,7 +11,7 @@ const Families: CollectionConfig = {
     update: ({ req }) => Boolean(req.user && req.user.isAdmin),
     delete: ({ req }) => Boolean(req.user && req.user.isAdmin),
   },
-  admin: { useAsTitle: 'productName', defaultColumns: ['code', 'name', 'type', 'category'] },
+  admin: { group: 'Catalogue', useAsTitle: 'productName', defaultColumns: ['code', 'name', 'type', 'category'] },
   fields: [
     { name: 'code', type: 'text', required: true, unique: true, index: true },
     // schema-v2 canonical family name (e.g. 'GreenBolt G2 Through Anchor').

@@ -25,6 +25,7 @@ export default buildConfig({
   serverURL: process.env.PAYLOAD_PUBLIC_SERVER_URL || 'http://localhost:3000',
   admin: {
     user: 'users',
+    theme: 'light',
     importMap: { baseDir: path.resolve(dirname) },
     meta: { title: 'Greenman CMS', titleSuffix: '- Greenman CMS' },
     dateFormat: 'dd MMM yyyy, HH:mm',
@@ -32,6 +33,11 @@ export default buildConfig({
       graphics: {
         Logo: { path: './src/components/AdminLogo.tsx', exportName: 'Logo' },
         Icon: { path: './src/components/AdminLogo.tsx', exportName: 'Icon' },
+      },
+      views: {
+        dashboard: {
+          Component: { path: './src/components/AdminDashboard.tsx', exportName: 'Dashboard' },
+        },
       },
     },
   },

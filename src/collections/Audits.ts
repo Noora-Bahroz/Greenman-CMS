@@ -4,7 +4,7 @@ import type { CollectionConfig } from 'payload'
 // only by admins. Maps to phase1/leaf_resolutions.json decisions.
 const Audits: CollectionConfig = {
   slug: 'audits',
-  admin: { useAsTitle: 'operation', defaultColumns: ['operation', 'leaf', 'decisionId'] },
+  admin: { group: 'System', useAsTitle: 'operation', defaultColumns: ['operation', 'leaf', 'decisionId'] },
   access: {
     read: () => true,
     create: ({ req }) => Boolean(req.user?.isAdmin),

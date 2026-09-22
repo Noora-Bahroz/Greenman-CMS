@@ -25,6 +25,10 @@ html[data-theme='light'] {
   --nav-width: 264px;
   --theme-text: var(--theme-elevation-900);
 
+  /* --- airy light surfaces: cool white with a faint green cast ---------- */
+  --theme-bg: #f6f8f5;
+  --color-base-900: #12241e;
+
   /* --- accent: Greenman "safety green" ramp ---------------------------- */
   --color-success-50: #ecfdf5;
   --color-success-100: #d1fae5;
@@ -152,7 +156,10 @@ html[data-theme='dark'] {
 
   /* login --------------------------------------------------------------- */
   .login {
-    /* keeps the default centered layout, gently branded */
+    background:
+      radial-gradient(1200px 600px at 80% -10%, color-mix(in srgb, var(--theme-success-100) 70%, transparent), transparent 60%),
+      radial-gradient(900px 500px at -10% 110%, color-mix(in srgb, var(--theme-elevation-100) 80%, transparent), transparent 55%),
+      var(--theme-bg);
   }
 
   .login .login__brand {
@@ -165,5 +172,206 @@ html[data-theme='dark'] {
   select,
   [data-scheme='light'] input {
     transition: border-color 120ms ease, box-shadow 120ms ease;
+  }
+
+  /* ------------------------------------------------------------------
+   * Custom dashboard (src/components/AdminDashboard.tsx)
+   * ----------------------------------------------------------------- */
+  .gm-dashboard {
+    display: grid;
+    gap: calc(var(--base) * 2);
+  }
+
+  .gm-hero {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: calc(var(--base) * 2);
+    overflow: hidden;
+    padding: calc(var(--base) * 2.5);
+    border-radius: var(--style-radius-l);
+    border: 1px solid var(--theme-elevation-150);
+    background:
+      radial-gradient(900px 400px at 15% -20%, color-mix(in srgb, var(--theme-success-200) 75%, transparent), transparent 60%),
+      radial-gradient(700px 400px at 95% 120%, color-mix(in srgb, var(--theme-success-100) 80%, transparent), transparent 55%),
+      linear-gradient(120deg, var(--theme-elevation-0) 0%, color-mix(in srgb, var(--theme-success-50) 55%, var(--theme-elevation-0)) 100%);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 10px 28px rgb(0 0 0 / 0.05);
+  }
+
+  .gm-hero__eyebrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-success-700);
+  }
+
+  .gm-hero__title {
+    margin: calc(var(--base) * 0.5) 0 0;
+    font-size: 26px;
+    line-height: 1.15;
+    letter-spacing: -0.025em;
+    color: var(--theme-elevation-900);
+  }
+
+  .gm-hero__sub {
+    margin: calc(var(--base) * 0.75) 0 0;
+    color: var(--theme-elevation-500);
+    font-size: 14px;
+  }
+
+  .gm-hero__stat {
+    flex: 0 0 auto;
+    display: grid;
+    gap: 2px;
+    justify-items: end;
+    padding: calc(var(--base) * 0.75) calc(var(--base) * 1.25);
+    border-radius: var(--style-radius-m);
+    background: color-mix(in srgb, var(--theme-elevation-0) 80%, transparent);
+    border: 1px solid var(--theme-elevation-150);
+  }
+
+  .gm-hero__stat-num {
+    font-size: 28px;
+    font-weight: 750;
+    letter-spacing: -0.03em;
+    color: var(--color-success-700);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .gm-hero__stat-label {
+    font-size: 12px;
+    color: var(--theme-elevation-500);
+  }
+
+  .gm-quick {
+    display: flex;
+    flex-wrap: wrap;
+    gap: calc(var(--base) * 0.5);
+  }
+
+  .gm-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: calc(var(--base) * 0.4);
+    padding: calc(var(--base) * 0.5) calc(var(--base) * 0.75);
+    border-radius: 999px;
+    border: 1px solid var(--theme-elevation-150);
+    background: var(--theme-elevation-0);
+    color: var(--theme-elevation-700);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.04);
+    transition: border-color 120ms ease, transform 120ms ease, box-shadow 120ms ease;
+  }
+
+  .gm-chip:hover {
+    border-color: var(--color-success-400);
+    color: var(--color-success-700);
+    transform: translateY(-1px);
+    box-shadow: 0 3px 8px rgb(0 0 0 / 0.06);
+  }
+
+  .gm-chip__plus {
+    color: var(--color-success-600);
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .gm-section {
+    display: grid;
+    gap: calc(var(--base) * 1.5);
+  }
+
+  .gm-section__head {
+    display: flex;
+    align-items: baseline;
+    gap: calc(var(--base) * 0.75);
+  }
+
+  .gm-section__title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 750;
+    letter-spacing: -0.015em;
+    color: var(--theme-elevation-900);
+  }
+
+  .gm-section__hint {
+    margin: 0;
+    font-size: 13px;
+    color: var(--theme-elevation-450);
+  }
+
+  .gm-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: calc(var(--base) * 0.75);
+  }
+
+  .gm-card {
+    display: flex;
+    flex-direction: column;
+    gap: calc(var(--base) * 0.5);
+    padding: calc(var(--base) * 1.25);
+    border-radius: var(--style-radius-l);
+    border: 1px solid var(--theme-elevation-150);
+    background: var(--theme-elevation-0);
+    box-shadow: 0 1px 2px rgb(0 0 0 / 0.04), 0 4px 12px rgb(0 0 0 / 0.04);
+    text-decoration: none;
+    transition: border-color 140ms ease, box-shadow 140ms ease, transform 140ms ease;
+  }
+
+  .gm-card:hover {
+    border-color: var(--color-success-400);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 4px rgb(0 0 0 / 0.05), 0 10px 24px rgb(0 0 0 / 0.07);
+  }
+
+  .gm-card__top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: calc(var(--base) * 0.5);
+  }
+
+  .gm-card__title {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--theme-elevation-900);
+  }
+
+  .gm-card__count {
+    min-width: 34px;
+    text-align: center;
+    padding: 2px 8px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--color-success-700);
+    background: color-mix(in srgb, var(--theme-success-100) 70%, transparent);
+  }
+
+  .gm-card--blue .gm-card__count {
+    color: var(--theme-elevation-700);
+    background: var(--theme-elevation-100);
+  }
+
+  .gm-card__desc {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.45;
+    color: var(--theme-elevation-500);
+    flex: 1 1 auto;
+  }
+
+  .gm-card__go {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-success-700);
   }
 }

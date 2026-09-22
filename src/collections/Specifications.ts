@@ -5,6 +5,7 @@ import type { CollectionConfig } from 'payload'
 const Specifications: CollectionConfig = {
   slug: 'specifications',
   admin: {
+    group: 'Catalogue',
     useAsTitle: 'key',
     defaultColumns: ['family', 'key', 'value'],
   },

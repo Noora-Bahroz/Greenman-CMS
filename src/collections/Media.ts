@@ -10,6 +10,7 @@ const Media: CollectionConfig = {
   slug: 'media',
   labels: { singular: 'Image', plural: 'Images' },
   admin: {
+    group: 'Publishing',
     useAsTitle: 'alt',
     defaultColumns: ['alt', 'kind', 'filename'],
     description:

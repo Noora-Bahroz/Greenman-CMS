@@ -5,6 +5,7 @@ import type { CollectionConfig } from 'payload'
 const Categories: CollectionConfig = {
   slug: 'categories',
   admin: {
+    group: 'Catalogue',
     useAsTitle: 'name',
     defaultColumns: ['name', 'badge', 'slug', 'sortOrder'],
   },

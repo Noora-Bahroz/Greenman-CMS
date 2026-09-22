@@ -2,7 +2,7 @@ import type { CollectionConfig } from 'payload'
 
 const Variants: CollectionConfig = {
   slug: 'variants',
-  admin: { useAsTitle: 'sku', defaultColumns: ['sku', 'product', 'size'] },
+  admin: { group: 'Catalogue', useAsTitle: 'sku', defaultColumns: ['sku', 'product', 'size'] },
   access: {
     read: () => true,
     create: ({ req }) => Boolean(req.user && req.user.isAdmin),

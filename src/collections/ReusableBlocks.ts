@@ -4,7 +4,7 @@ import type { CollectionConfig } from 'payload'
 // frozen legacy contract (reusable across families, payload-native blocks).
 const ReusableBlocks: CollectionConfig = {
   slug: 'reusable-blocks',
-  admin: { useAsTitle: 'name', defaultColumns: ['name', 'block'] },
+  admin: { group: 'Catalogue', useAsTitle: 'name', defaultColumns: ['name', 'block'] },
   access: {
     read: () => true,
     create: ({ req }) => Boolean(req.user?.isAdmin),

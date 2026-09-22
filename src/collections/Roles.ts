@@ -4,7 +4,7 @@ import type { CollectionConfig } from 'payload'
 // collections; `isOwner` scopes a few contract leaves for later owner signoff.
 const Roles: CollectionConfig = {
   slug: 'roles',
-  admin: { useAsTitle: 'name', defaultColumns: ['name', 'isAdmin', 'isOwner'] },
+  admin: { group: 'System', useAsTitle: 'name', defaultColumns: ['name', 'isAdmin', 'isOwner'] },
   access: {
     read: () => true,
     create: ({ req }) => Boolean(req.user?.isAdmin),
