@@ -1,0 +1,55 @@
+services:
+  # ---- Greenman CMS (Payload 3 + Next.js) ----
+  cms:
+    build:
+      context: ..
+      dockerfile: deploy/Dockerfile
+    image: greenman-cms:latest
+    restart: unless-stopped
+    env_file: .env.production
+    environment:
+      DATABASE_URI: file:/app/data/payload.db
+      P5_DB_URI: file:/app/data/payload.db
+      PAYLOAD_PUBLIC_SERVER_URL: https://${CMS_DOMAIN:-localhost}
+      GREENMAN_DATA_DIR: /app/frontend/data
+      GREENMAN_WEB_DIR: /app/frontend
+    volumes:
+      # persistent SQLite (WAL) + uploaded media
+      - ./server-data/db:/app/data
+      - ./server-data/media:/app/media
+      # read-write live copy of the public frontend repo, so `publish.sh`
+      # can install exported data/*.json directly into it
+      - ${FRONTEND_DIR:-../frontend}:/app/frontend
+    expose:
+      - "3000"
+    healthcheck:
+      test: ["CMD-SHELL", "node -e \"fetch('http://127.0.0.1:3000/api/access').then(r=>process.exit(r.status===200?0:1)).catch(()=>process.exit(1))\""]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+    networks:
+      - cmsnet
+
+  # ---- Caddy reverse proxy + automatic HTTPS ----
+  caddy:
+    image: caddy:2.8
+    restart: unless-stopped
+    environment:
+      CMS_DOMAIN: ${CMS_DOMAIN:-localhost}
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - ./server-data/caddy_data:/data
+      - ./server-data/caddy_config:/config
+    depends_on:
+      cms:
+        condition: service_healthy
+    networks:
+      - cmsnet
+
+networks:
+  cmsnet:
+    driver: bridge

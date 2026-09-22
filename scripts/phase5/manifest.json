@@ -1,0 +1,281 @@
+{
+  "generatedAt": "2026-09-22T11:24:34.436Z",
+  "dbUri": "file:payload-phase5-test.db",
+  "model": {
+    "categories": 5,
+    "families": 138,
+    "products": 183,
+    "variants": 1341,
+    "specRoots": 321
+  },
+  "perFile": [
+    {
+      "file": "anchor-catalog.json",
+      "shape": "anchor-catalog",
+      "categories": 0,
+      "families": 45,
+      "products": 45,
+      "variants": 465,
+      "skipped": 0
+    },
+    {
+      "file": "c-channel-catalog.json",
+      "shape": "profile-catalog",
+      "categories": 1,
+      "families": 15,
+      "products": 15,
+      "variants": 15,
+      "skipped": 0
+    },
+    {
+      "file": "dscb-catalog.json",
+      "shape": "accessory",
+      "categories": 0,
+      "families": 1,
+      "products": 1,
+      "variants": 4,
+      "skipped": 0
+    },
+    {
+      "file": "fasteners-catalog.json",
+      "shape": "fasteners-catalog",
+      "categories": 0,
+      "families": 6,
+      "products": 6,
+      "variants": 45,
+      "skipped": 0
+    },
+    {
+      "file": "gaco-catalog.json",
+      "shape": "accessory",
+      "categories": 0,
+      "families": 1,
+      "products": 1,
+      "variants": 7,
+      "skipped": 0
+    },
+    {
+      "file": "gahi-catalog.json",
+      "shape": "accessory",
+      "categories": 0,
+      "families": 1,
+      "products": 1,
+      "variants": 1,
+      "skipped": 0
+    },
+    {
+      "file": "gbat-catalog.json",
+      "shape": "accessory",
+      "categories": 0,
+      "families": 1,
+      "products": 1,
+      "variants": 8,
+      "skipped": 0
+    },
+    {
+      "file": "gbcc-catalog.json",
+      "shape": "accessory",
+      "categories": 0,
+      "families": 1,
+      "products": 1,
+      "variants": 1,
+      "skipped": 0
+    },
+    {
+      "file": "gbdc-catalog.json",
+      "shape": "accessory",
+      "categories": 0,
+      "families": 1,
+      "products": 1,
+      "variants": 3,
+      "skipped": 0
+    },
+    {
+      "file": "gbho-catalog.json",
+      "shape": "accessory",
+      "categories": 0,
+      "families": 1,
+      "products": 1,
+      "variants": 5,
+      "skipped": 0
+    },
+    {
+      "file": "gbnb-catalog.json",
+      "shape": "accessory",
+      "categories": 0,
+      "families": 1,
+      "products": 1,
+      "variants": 1,
+      "skipped": 0
+    },
+    {
+      "file": "gccl-catalog.json",
+      "shape": "accessory",
+      "categories": 0,
+      "families": 1,
+      "products": 1,
+      "variants": 1,
+      "skipped": 0
+    },
+    {
+      "file": "gcwa-catalog.json",
+      "shape": "accessory",
+      "categories": 0,
+      "families": 1,
+      "products": 1,
+      "variants": 3,
+      "skipped": 0
+    },
+    {
+      "file": "gecc-catalog.json",
+      "shape": "accessory",
+      "categories": 0,
+      "families": 1,
+      "products": 1,
+      "variants": 2,
+      "skipped": 0
+    },
+    {
+      "file": "gfco-catalog.json",
+      "shape": "accessory",
+      "categories": 0,
+      "families": 1,
+      "products": 1,
+      "variants": 9,
+      "skipped": 0
+    },
+    {
+      "file": "gmah-catalog.json",
+      "shape": "accessory",
+      "categories": 0,
+      "families": 1,
+      "products": 1,
+      "variants": 1,
+      "skipped": 0
+    },
+    {
+      "file": "gmdc-catalog.json",
+      "shape": "accessory",
+      "categories": 0,
+      "families": 1,
+      "products": 1,
+      "variants": 8,
+      "skipped": 0
+    },
+    {
+      "file": "gmrc-catalog.json",
+      "shape": "accessory",
+      "categories": 0,
+      "families": 1,
+      "products": 1,
+      "variants": 4,
+      "skipped": 0
+    },
+    {
+      "file": "gpnb-catalog.json",
+      "shape": "accessory",
+      "categories": 0,
+      "families": 1,
+      "products": 1,
+      "variants": 2,
+      "skipped": 0
+    },
+    {
+      "file": "gptb-catalog.json",
+      "shape": "accessory",
+      "categories": 0,
+      "families": 1,
+      "products": 1,
+      "variants": 12,
+      "skipped": 0
+    },
+    {
+      "file": "gptn-catalog.json",
+      "shape": "accessory",
+      "categories": 0,
+      "families": 1,
+      "products": 1,
+      "variants": 12,
+      "skipped": 0
+    },
+    {
+      "file": "grac-catalog.json",
+      "shape": "accessory",
+      "categories": 0,
+      "families": 1,
+      "products": 1,
+      "variants": 1,
+      "skipped": 0
+    },
+    {
+      "file": "greengrip-ggip-catalog.json",
+      "shape": "greengrip",
+      "categories": 0,
+      "families": 30,
+      "products": 30,
+      "variants": 598,
+      "skipped": 0
+    },
+    {
+      "file": "greengrip-ggsh-catalog.json",
+      "shape": "greengrip",
+      "categories": 0,
+      "families": 6,
+      "products": 6,
+      "variants": 96,
+      "skipped": 0
+    },
+    {
+      "file": "guhb-catalog.json",
+      "shape": "accessory",
+      "categories": 0,
+      "families": 1,
+      "products": 1,
+      "variants": 12,
+      "skipped": 0
+    },
+    {
+      "file": "guwb-catalog.json",
+      "shape": "accessory",
+      "categories": 0,
+      "families": 1,
+      "products": 1,
+      "variants": 6,
+      "skipped": 0
+    },
+    {
+      "file": "gzco-catalog.json",
+      "shape": "accessory",
+      "categories": 0,
+      "families": 1,
+      "products": 1,
+      "variants": 5,
+      "skipped": 0
+    },
+    {
+      "file": "products.json",
+      "shape": "display-layer",
+      "categories": 3,
+      "families": 0,
+      "products": 45,
+      "variants": 0,
+      "skipped": 0
+    },
+    {
+      "file": "strut-channel-catalog.json",
+      "shape": "profile-catalog",
+      "categories": 1,
+      "families": 14,
+      "products": 14,
+      "variants": 14,
+      "skipped": 0
+    }
+  ],
+  "skipNotes": [
+    {
+      "file": "greengrip-ggsh-catalog.json",
+      "family": "GGRR",
+      "reason": "family code 'GGRR' collided across files; renamed to 'GGRR-ggsh' (distinct products retained)"
+    }
+  ]
+}

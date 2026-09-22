@@ -1,0 +1,18 @@
+# Docker build: keep the image free of secrets, node_modules, and local data.
+node_modules
+.next
+.env
+.env.*
+!.env.production.example
+.git
+.gitignore
+*.db
+*.db-wal
+*.db-shm
+media
+server-data
+deploy/server-data
+scripts/tmp
+*.log
+.vscode
+.DS_Store

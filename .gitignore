@@ -1,0 +1,24 @@
+# ---- Greenman CMS (Payload 3) - node ----
+node_modules
+.next
+
+# ---- secrets & env ----
+.env
+.env.*
+!.env.production.example
+
+# ---- local data (never commit) ----
+*.db
+*.db-wal
+*.db-shm
+payload.db
+payload-phase5-test.db
+media/
+server-data/
+
+# ---- dev/test artifacts ----
+scripts/tmp/
+scripts/phase6/out/
+*.log
+.vscode
+.DS_Store

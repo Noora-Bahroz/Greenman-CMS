@@ -1,0 +1,38 @@
+{
+  "name": "greenman-cms-payload",
+  "version": "0.3.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "npm@11.12.1",
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "payload": "payload",
+    "generate:types": "payload generate:types",
+    "generate:importmap": "payload generate:importmap",
+    "db:push": "payload db:push",
+    "p5:import": "tsx scripts/phase5/import.ts",
+    "p5:verify": "tsx scripts/phase5/verify.ts",
+    "p6:seed-blogs": "tsx scripts/phase6/seed-blogs.ts",
+    "p6:export": "tsx scripts/phase6/export.ts"
+  },
+  "dependencies": {
+    "@payloadcms/db-sqlite": "^3.90.1",
+    "@payloadcms/next": "^3.90.1",
+    "@payloadcms/richtext-lexical": "^3.90.1",
+    "next": "^15.4.11",
+    "payload": "^3.90.1",
+    "react": "^19.1.2",
+    "react-dom": "^19.1.2",
+    "sharp": "^0.33.5"
+  },
+  "devDependencies": {
+    "drizzle-orm": "^0.45.3",
+    "tsx": "^4.23.15",
+    "typescript": "^5.9.3"
+  }
+}

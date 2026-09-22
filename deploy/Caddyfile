@@ -1,0 +1,8 @@
+# Caddy reverse proxy for the Greenman CMS.
+# CMS_DOMAIN is injected by docker-compose (${CMS_DOMAIN:-localhost}).
+# For production set a real DNS name in .env; Caddy will obtain and
+# renew a Let's Encrypt certificate automatically (needs ports 80/443 open).
+{$CMS_DOMAIN} {
+	encode zstd gzip
+	reverse_proxy cms:3000
+}

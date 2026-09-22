@@ -1,0 +1,19 @@
+{
+  "generatedAt": "2026-09-22T11:24:46.688Z",
+  "dbUri": "file:payload-phase5-test.db",
+  "cms": {
+    "categories": 5,
+    "families": 138,
+    "products": 183,
+    "variants": 1341,
+    "specRows": 593
+  },
+  "model": {
+    "categories": 5,
+    "families": 138,
+    "products": 183,
+    "variants": 1341
+  },
+  "ok": true,
+  "failures": []
+}

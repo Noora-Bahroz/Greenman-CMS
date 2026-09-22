@@ -1,0 +1,188 @@
+{
+  "generatedAt": "2026-09-22T14:47:55.985Z",
+  "dbUri": "file:payload-phase5-test.db",
+  "outDir": "C:\\Users\\noora\\AppData\\Local\\Temp\\opencode\\phase3\\scripts\\phase6\\out\\data",
+  "installed": false,
+  "files": [
+    {
+      "file": "anchor-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "blog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "c-channel-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "dscb-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "fasteners-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "gaco-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "gahi-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "gbat-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "gbcc-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "gbdc-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "gbho-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "gbnb-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "gccl-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "gcwa-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "gecc-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "gfco-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "gmah-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "gmdc-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "gmrc-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "gpnb-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "gptb-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "gptn-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "grac-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "greengrip-ggip-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "greengrip-ggsh-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "guhb-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "guwb-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "gzco-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "products.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    },
+    {
+      "file": "strut-channel-catalog.json",
+      "equal": true,
+      "byteEqual": true,
+      "detail": "identical"
+    }
+  ]
+}
