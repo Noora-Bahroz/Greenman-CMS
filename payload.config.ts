@@ -31,6 +31,7 @@ export default buildConfig({
     dateFormat: 'dd MMM yyyy, HH:mm',
     components: {
       beforeNav: [{ path: './src/components/NavBrand.tsx', exportName: 'NavBrand' }],
+      beforeLogin: [{ path: './src/components/LoginIntro.tsx', exportName: 'LoginIntro' }],
       graphics: {
         Logo: { path: './src/components/AdminLogo.tsx', exportName: 'Logo' },
         Icon: { path: './src/components/AdminLogo.tsx', exportName: 'Icon' },
