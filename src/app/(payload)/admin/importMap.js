@@ -23,6 +23,7 @@ import { BoldFeatureClient as BoldFeatureClient_e70f5e05f09f93e00b997edb1ef0c864
 import { ItalicFeatureClient as ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { Icon as Icon_eff871b9a0a72ab2e18b6aa325ffaed1 } from '../../../../src/components/AdminLogo.tsx'
 import { Logo as Logo_eff871b9a0a72ab2e18b6aa325ffaed1 } from '../../../../src/components/AdminLogo.tsx'
+import { NavBrand as NavBrand_5761430dced9c28b3c158d3b8964f33b } from '../../../../src/components/NavBrand.tsx'
 import { Dashboard as Dashboard_961e2c0523c5a623bcd4fc4704026df9 } from '../../../../src/components/AdminDashboard.tsx'
 import { CollectionCards as CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1 } from '@payloadcms/next/rsc'
 
@@ -53,6 +54,7 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#ItalicFeatureClient": ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "./src/components/AdminLogo.tsx#Icon": Icon_eff871b9a0a72ab2e18b6aa325ffaed1,
   "./src/components/AdminLogo.tsx#Logo": Logo_eff871b9a0a72ab2e18b6aa325ffaed1,
+  "./src/components/NavBrand.tsx#NavBrand": NavBrand_5761430dced9c28b3c158d3b8964f33b,
   "./src/components/AdminDashboard.tsx#Dashboard": Dashboard_961e2c0523c5a623bcd4fc4704026df9,
   "@payloadcms/next/rsc#CollectionCards": CollectionCards_f9c02e79a4aed9a3924487c0cd4cafb1
 }
