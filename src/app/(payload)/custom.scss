@@ -10,6 +10,15 @@
 /* Type */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
+/*
+   Payload depends on these token definitions + shell styles living in the app
+   stylesheet (they are referenced as var() all over @payloadcms internal CSS
+   but are NOT shipped by the packages' compiled CSS). Import the canonical
+   scaffold — our unlayered :root + @layer payload rules below re-tint it.
+   Kept before every custom rule so cascade layers resolve predictably.
+*/
+@import '@payloadcms/ui/scss/app.scss';
+
 /* -------------------------------------------------------------------------
    1. Tokens
    ------------------------------------------------------------------------- */
@@ -42,6 +51,8 @@ html[data-theme='light'] {
   /* surfaces */
   --theme-bg: #f9fafb;
   --theme-input-bg: #ffffff;
+  --theme-text: #1d2939;
+  --theme-link: var(--color-success-700);
   --theme-elevation-25: #fcfcfd;
 
   /* Greenman brand (Untitled-style green ramp) */
@@ -50,8 +61,11 @@ html[data-theme='light'] {
   --color-success-100: #d1fadf;
   --color-success-150: #c4f7d5;
   --color-success-200: #a6f4c5;
+  --color-success-250: #8fe8b8;
   --color-success-300: #6ce9a6;
+  --color-success-350: #46d68f;
   --color-success-400: #32d583;
+  --color-success-450: #1fc275;
   --color-success-500: #12b76a;
   --color-success-550: #059669;
   --color-success-600: #047857;
@@ -1340,6 +1354,33 @@ html[data-theme='light'] {
    14. Responsive
    ------------------------------------------------------------------------- */
 @layer payload {
+  /* Shell: force the sidebar column open on desktop regardless of Payload's
+     JS toggle state (it defaults to a collapsed 0-width column until the
+     nav-hydration effect runs). */
+  @media (min-width: 1025px) {
+    .template-default {
+      grid-template-columns: var(--nav-width) minmax(0, 1fr);
+    }
+
+    .template-default .nav,
+    .template-default--nav-open .nav {
+      display: block;
+      opacity: 1;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .template-default {
+      grid-template-columns: var(--nav-width) minmax(0, 1fr);
+    }
+
+    .template-default .nav,
+    .template-default--nav-open .nav {
+      display: block;
+      opacity: 1;
+    }
+  }
+
   @media (max-width: 1200px) {
     .nav {
       --nav-width: 248px;

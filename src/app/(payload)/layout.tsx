@@ -5,6 +5,7 @@ import React from 'react'
 import { importMap } from './admin/importMap.js'
 import type { ServerFunctionClient } from 'payload'
 
+import '@payloadcms/next/css'
 import './custom.scss'
 
 const serverFunction: ServerFunctionClient = async function (args) {
