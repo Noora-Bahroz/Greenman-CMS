@@ -25,8 +25,8 @@ export const NavBrand = () => {
       <Link className="gm-nav-brand__link" href={dashUrl} prefetch={false}>
         <span className="gm-nav-brand__mark">{MARK}</span>
         <span className="gm-nav-brand__text">
-          <span className="gm-nav-brand__name">CMS</span>
-          <span className="gm-nav-brand__sub">Content Management</span>
+          <span className="gm-nav-brand__name">Greenman CMS</span>
+          <span className="gm-nav-brand__sub">Content Management System</span>
         </span>
       </Link>
       <Link

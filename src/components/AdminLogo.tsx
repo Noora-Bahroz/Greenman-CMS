@@ -13,8 +13,8 @@ export const Logo = () => (
   <span className="gm-logo">
     <span className="gm-logo__mark">{MARK}</span>
     <span className="gm-logo__text">
-      <span className="gm-logo__name">CMS</span>
-      <span className="gm-logo__sub">Content Management</span>
+      <span className="gm-logo__name">Greenman CMS</span>
+      <span className="gm-logo__sub">Content Management System</span>
     </span>
   </span>
 )

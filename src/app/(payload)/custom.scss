@@ -684,6 +684,14 @@ html[data-theme='light'] {
     color: var(--theme-elevation-300);
   }
 
+  /* breadcrumb home logo (28px svg clipped to an 18px anchor) */
+  .step-nav__home svg {
+    display: block;
+    flex: none;
+    width: 18px;
+    height: 18px;
+  }
+
   .app-header__account {
     border-radius: 999px;
     transition: box-shadow 120ms ease;
@@ -795,16 +803,15 @@ html[data-theme='light'] {
     overflow: hidden;
   }
 
-  .search-filter::before {
-    content: "";
+  /* single magnifier (Payload ships this as .icon--search inside .search-bar) */
+  .search-bar .icon--search {
     position: absolute;
     top: 50%;
-    left: 16px;
-    z-index: 1;
+    left: 14px;
     width: 16px;
     height: 16px;
     transform: translateY(-50%);
-    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23667085' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='11' cy='11' r='7'/%3E%3Cpath d='M21 21l-4.3-4.3'/%3E%3C/svg%3E") center/contain no-repeat;
+    color: var(--theme-elevation-400);
     pointer-events: none;
   }
 
@@ -1462,6 +1469,11 @@ html[data-theme='light'] {
     .template-default--nav-open .nav {
       display: block;
       opacity: 1;
+    }
+
+    /* no collapse toggle on desktop — the sidebar stays visible */
+    .template-default__nav-toggler-wrapper {
+      display: none;
     }
   }
 
