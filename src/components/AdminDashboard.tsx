@@ -177,7 +177,7 @@ export const Dashboard: React.FC<DashboardProps> = async ({ payload, user }) => 
         <div className="gm-head__intro">
           <p className="gm-head__eyebrow">Overview</p>
           <h1 className="gm-head__title">Welcome back, {name}</h1>
-          <p className="gm-head__sub">Manage your Greenman catalogue, content and publishing from one place.</p>
+          <p className="gm-head__sub">Manage your catalogue, content and publishing from one place.</p>
           <p className="gm-head__meta">{today}</p>
         </div>
         <div className="gm-head__actions" style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
