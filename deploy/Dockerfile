@@ -18,9 +18,10 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci --no-audit --no-fund
 
-# 2) copy source, give runtime user ownership, then build
+# 2) copy source, apply payload runtime patch, give runtime user ownership, then build
 COPY . .
-RUN chown -R node:node /app \
+RUN node deploy/patch-payload.mjs \
+    && chown -R node:node /app \
     && mkdir -p /app/data /app/media /app/scripts/phase6/out/data \
     && chmod +x /app/deploy/entrypoint.sh
 
